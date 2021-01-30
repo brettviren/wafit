@@ -16,7 +16,7 @@ This repo holds some [[https://waf.io][waf]] tools and some helper code to make 
   def build(bld):
       proj.build(bld)
 
-      # ... your package build() ... #
+      # ... your package build code ... #
 #+end_src
 
 The ~WafIT~ constructor takes a list of tools, either provided by waf,
@@ -25,10 +25,10 @@ wafit or otherwise accessible.
 Wafit can be used from whatever Python environment invoking ~waf~ or may
 be copied or otherwise added to your repo at top level.  For example,
 
-#+begin_center
+#+begin_example
   $ cd myrepo/
   $ git subrepo clone https://github.com/brettviren/wafit.git wafit
-#+end_center
+#+end_example
 
 Any special use of wafit-provided tools is documented in the tool
 source file.  
