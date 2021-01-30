@@ -1,5 +1,20 @@
 import os.path as osp
 
+def listify(lst, delim=' '):
+    if isinstance(lst, str):
+        return lst.split(delim)
+    return list(lst)
+
+def uses(ctx):
+    return [hh.split("_",1)[1] for hh in ctx.env if hh.startswith("HAVE_")]
+
+def rpath(ctx):
+    use = uses(ctx)
+    rpath = [ctx.env["PREFIX"] + '/lib']
+    rpath += [ctx.env["LIBPATH_%s"%u][0] for u in use if ctx.env["LIBPATH_%s"%u]]
+    return list(set(rpath))
+    
+
 def generic_options(opt, name, libs=True, incs=True):
     ldash = name.lower().replace("_", "-")
     opt = opt.add_option_group(f'{name} Options')
